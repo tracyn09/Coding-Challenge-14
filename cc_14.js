@@ -23,7 +23,9 @@ priorityLabel.textContent = `Priority: ${PriorityLevel}`
 const resolveButton = document.createElement(`button`)
 resolveButton.textContent = `Resolve`
 resolveButton.addEventListener(`click`,function() {
-    ticket.remove()})
+    event.stopPropagation()          // Task 4 : stopPropagation to prevent event bubbling
+    container.removeChild(ticket)  // Task 4 : removeChild from parent
+})
 
 //Appending to ticket
 ticket.appendChild(ticketName)
@@ -48,6 +50,11 @@ function highPriorityTickets() {
         }
     })
 }
+//Task 4
+//Click Event listener to employee container
+const ticketContainer = document.getElementById('ticketContainer');
+ticketContainer.addEventListener('click', function() {
+    console.log('Support ticket clicked')})
 
 //Test Case for Task 2
 window.onload = function() {
