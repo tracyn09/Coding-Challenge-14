@@ -35,9 +35,25 @@ ticket.appendChild(resolveButton)
 ticketContainer.appendChild(ticket)
 }
 
+//Task 3
+//Updating supporting tickets
+function highPriorityTickets() {
+    const tickets = document.querySelectorAll(`.ticket`)
+
+    tickets.forEach(ticket => {
+        const priorityText = ticket.querySelector('p:nth-child(3)').textContent //Identifying which line shows priority text
+        if (priorityText.includes('Priority: High')) {
+//Highlighting high priority           
+            ticket.style.backgroundColor = 'yellow'  
+        }
+    })
+}
+
 //Test Case for Task 2
 window.onload = function() {
     addSupportTicket(`Marvin Guerrero`, `Delayed delivery`, `Low`)
     addSupportTicket(`Teresa Nguyen`, `Damaged product`, `Medium`)
     addSupportTicket(`Joseph Tornincaso`, `Missing items`, `High`)
+//Test Case for Task 3
+    highPriorityTickets()
 }
