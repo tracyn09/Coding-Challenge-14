@@ -27,6 +27,42 @@ resolveButton.addEventListener(`click`,function() {
     container.removeChild(ticket)  // Task 4 : removeChild from parent
 })
 
+// *** Task 5 ***
+    //Double Click
+    ticket.addEventListener('dblclick', function() {
+        const NameInput = document.createElement('input')
+        const IssueInput = document.createElement('input')
+        const PriorityLevelInput = document.createElement(`input`)
+        const saveButton = document.createElement('button')
+        
+        //Prepopulate inputs with existing name and positino
+        NameInput.value = ticketName.textContent
+        IssueInput.value = ticketIssue.textContent
+        PriorityLevelInput.value = priorityLabel.textContent
+        saveButton.textContent = `Save`
+            
+        //Replace static text with inputs
+        ticket.replaceChild(NameInput, ticketName)
+        ticket.replaceChild(IssueInput, ticketIssue)
+        ticket.replaceChild(PriorityLevelInput, priorityLabel)
+        ticket.appendChild(saveButton)
+    
+        //Save button
+        saveButton.onclick = function() {
+            ticketName.textContent = NameInput.value
+            ticketIssue.textContent= IssueInput.value
+            priorityLabel.textContent = PriorityLevelInput.value
+    
+        //Revert to static text
+            ticket.replaceChild(ticketName, NameInput)
+            ticket.replaceChild(ticketIssue, IssueInput)
+            ticket.replaceChild(priorityLabel, PriorityLevelInput)
+            ticket.appendChild(resolveButton)
+
+            highPriorityTickets()
+        }
+    })
+
 //Appending to ticket
 ticket.appendChild(ticketName)
 ticket.appendChild(ticketIssue)
@@ -61,6 +97,7 @@ window.onload = function() {
     addSupportTicket(`Marvin Guerrero`, `Delayed delivery`, `Low`)
     addSupportTicket(`Teresa Nguyen`, `Damaged product`, `Medium`)
     addSupportTicket(`Joseph Tornincaso`, `Missing items`, `High`)
-//Test Case for Task 3
+
+    //Test Case for Task 3
     highPriorityTickets()
 }
